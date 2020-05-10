@@ -1,4 +1,4 @@
-# lan-turtle-heaven
+# lanturtle-heaven
 cloud things for the lan turtle
 
 ## ping-monitor
