@@ -1,0 +1,10 @@
+#!/bin/bash
+# Show count of packets transmitted for all files
+
+OUTPUT=0
+
+while read OPER; do
+	OUTPUT=$(echo $OUTPUT + $OPER | bc)
+done < <(find loot -name 'ping_monitor*' -type f -exec sed 'x;$!d' {} \; | awk '{print $3}')
+
+echo $OUTPUT

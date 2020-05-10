@@ -1,0 +1,4 @@
+#!/bin/bash
+# Show the minimum latency observed in the data collected
+
+find loot -name 'ping_monitor*' -type f -exec sed -n '$p;' {} \; | awk '{print $6}' | awk -F'/' '{print $1}' | sort -n | head -n1

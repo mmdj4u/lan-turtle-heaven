@@ -1,0 +1,4 @@
+#!/bin/bash
+# Show the maximum packet loss observed in a file
+
+find loot -name 'ping_monitor*' -type f -exec sed 'x;$!d' {} \; | awk '{print $9}' | sort -n | tail -n1

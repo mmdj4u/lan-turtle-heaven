@@ -1,0 +1,9 @@
+#!/bin/bash
+# Show files with packet loss greater than a threshold percent
+
+if [ $# -ne 1 ]; then
+	>&2 echo -e "Pass a threshold value."
+	exit 1
+fi
+
+find loot -name 'ping_monitor*' -print0 -printf " " -type f -exec sed 'x;$!d' {} \; | awk '{print $1" "$10}' | awk -v val=$1 '$2 > val' | sort -n

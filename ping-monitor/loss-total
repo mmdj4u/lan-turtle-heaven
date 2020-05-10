@@ -1,0 +1,19 @@
+#!/bin/bash
+# Show the total packets lost for all files
+
+TX=0
+RX=0
+
+FILES=$(find loot -name 'ping_monitor*' -type f)
+
+# TRANSMITTED
+while read OPER; do
+	TX=$(echo $TX + $OPER | bc)
+done < <(for FILE in $FILES; do sed 'x;$!d' $FILE | awk '{print $3}'; done)
+
+# RECEIVED
+while read OPER; do
+	RX=$(echo $RX + $OPER | bc)
+done < <(for FILE in $FILES; do sed 'x;$!d' $FILE | awk '{print $6}'; done)
+
+echo $TX - $RX | bc

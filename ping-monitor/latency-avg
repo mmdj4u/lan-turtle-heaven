@@ -1,0 +1,13 @@
+#!/bin/bash
+# Show the latency average for all packets that have made round trip
+
+cleanup () {
+	test -f $TMPFILE && rm -f $TMPFILE
+}
+trap cleanup EXIT SIGHUP SIGKILL SIGTERM
+
+TMPFILE=$(mktemp)
+
+cat loot/ping_monitor* | sed -n '/from /p' | awk '{print $9}' | awk -F"=" '{print $2}' > $TMPFILE
+
+awk '{s+=$1}END{print s/NR}' $TMPFILE
