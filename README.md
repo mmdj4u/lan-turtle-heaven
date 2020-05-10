@@ -1,5 +1,5 @@
 # lanturtle-heaven
-cloud things for the lan turtle
+Cloud things for the LAN Turtle
 
 ## ping-monitor
 1) Clone this to a internet accessible server.
